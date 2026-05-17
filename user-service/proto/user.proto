@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package user;
+
+service UserService {
+
+    rpc GetUsers (Empty) returns (UserList);
+
+    rpc GetUser (UserId) returns (User);
+
+    rpc CreateUser (CreateUserRequest) returns (User);
+
+    rpc UpdateUser (UpdateUserRequest) returns (User);
+
+    rpc DeleteUser (UserId) returns (Empty);
+}
+
+/* ================= MESSAGES ================= */
+
+message Empty {}
+
+message UserId {
+    int32 id = 1;
+}
+
+/* USER MODEL */
+message User {
+    int32 id = 1;
+    string name = 2;
+}
+
+/* LIST */
+message UserList {
+    repeated User users = 1;
+}
+
+/* CREATE */
+message CreateUserRequest {
+    string name = 1;
+}
+
+/* UPDATE */
+message UpdateUserRequest {
+    int32 id = 1;
+    string name = 2;
+}
